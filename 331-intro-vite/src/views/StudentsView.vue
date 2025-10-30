@@ -37,28 +37,13 @@ onMounted(async () => {
   <h1>Students</h1>
   <div v-if="isLoading">正在加载学生数据…</div>
   <div v-else>
-    <p v-if="error" style="color:#d33; margin-bottom:12px;">{{ error }}</p>
-    <div class="students" v-if="students && students.length">
-      <div v-for="s in students" :key="s.studentId ?? s.name" class="card">
-        <h3>{{ s.name }} {{ s.surname }}</h3>
+    <p v-if="error" class="text-red-600 mb-3">{{ error }}</p>
+    <div class="flex flex-col items-center" v-if="students && students.length">
+      <div v-for="s in students" :key="s.studentId ?? s.name" class="border border-gray-300 p-4 w-[320px] mb-4 rounded">
+        <h3 class="text-lg font-semibold">{{ s.name }} {{ s.surname }}</h3>
         <p>GPA: {{ s.gpa }}</p>
       </div>
     </div>
     <div v-else>暂无学生数据。</div>
   </div>
 </template>
-
-<style scoped>
-.students {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.card {
-  border: 1px solid #ccc;
-  padding: 16px;
-  width: 320px;
-  margin-bottom: 16px;
-  border-radius: 4px;
-}
-</style>
